@@ -1,0 +1,44 @@
+name: Python script to invite users on different plateforms
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: 'Email address of user'
+        required: true
+      operation:
+        description: 'operation to be performed'
+        required: true
+      plateform:
+        description: 'operation to be performed'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        
+    - name: Install Coralogix CLI tool
+      run: |
+        curl -O https://coralogix-public.s3-eu-west-1.amazonaws.com/cxctl/latest/cxctl-Linux.gz
+        gunzip -N cxctl-*.gz
+        chmod +x cxctl
+       
+    
+    - name: Run python script
+      run: python .github/workflows/all_in_one.py

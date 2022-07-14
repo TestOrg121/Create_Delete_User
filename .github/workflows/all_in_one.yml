@@ -42,7 +42,8 @@ jobs:
     
     - name: Run python script
       run: |
-        email = ${{github.event.inputs.email}}
-        operation = ${{github.event.inputs.operation}}
-        plateform = ${{github.event.inputs.plateform}}
+        env:
+          email = ${{github.event.inputs.email}}
+          operation = ${{github.event.inputs.operation}}
+          plateform = ${{github.event.inputs.plateform}}
         python .github/workflows/all_in_one.py

@@ -18,7 +18,7 @@ def email_is_valid(email):
 #function for adding user to coralogix
 def addUser_coralogix(email):
     API_KEY="0a25dbe5-02c5-4eee-bdd7-2933f4299cd1"
-    cammand=f"./cxctl teamamte delete --api-key {API_KEY} --region eu --id 35963  {email}:user"
+    cammand=f"./cxctl account invite --api-key {API_KEY} --region eu --id 35963  --invites {email}:user"
     os.system(cammand)
 
 #function for adding user to github
@@ -47,32 +47,45 @@ def addUser_github(email):
     print(r.status_code)
     
 
-
+#email adsress of user
 email = ${{github.event.inputs.email}}
+
+#operation to be performed 
+operation = ${{github.event.inputs.operation}}
+
+#plateform on which operation is to be performed 
 plateform = ${{github.event.inputs.plateform}}
-operation =${{github.event.inputs.operation}}
+
+
 
 if email_is_valid(email):
+
     if operation=="create":
+
         if plateform=="coralogix":
+
             addUser_coralogix(email)
+
         elif plateform=="github":
+
             addUser_github(email)
 
         else:
+
             print("We don't have Script for this plateform Yet!")
         
 
-        
-
     elif operation=="delete":
-        print("script for delete operations yet to be written!")
+
+        print("script for delete operations is yet to be written!")
 
     
     else:
+
         print("Plese enter a vlid operation(create/delete)")
 
 
 
 else:
+
     print('please enter a valid email address !!')

@@ -18,8 +18,11 @@ def email_is_valid(email):
 
 #function for adding user to coralogix
 def addUser_coralogix(email):
-    API_KEY="0a25dbe5-02c5-4eee-bdd7-2933f4299cd1"
+    
+    API_KEY= os.environ['CORALOGIX_KEY']
+    
     cammand=f"./cxctl account invite --api-key {API_KEY} --region eu --id 35963  --invites {email}:user"
+    
     os.system(cammand)
 
 #function for adding user to github
@@ -47,15 +50,52 @@ def addUser_github(email):
 
     print(r.status_code)
     
+    
+#function for adding user to AWS   
+def addUser_aws(email):
+    
+    print("Yet to be written !!")
+    
+#function for adding user to Appsignal  
+def addUser_appsignal(email):
+    
+    print("Yet to be written !!")
+    
+#function for adding user to Redash     
+def addUser_redash(email):
+    
+    print("Yet to be written !!")
+    
+#function for adding user to JIRA     
+def addUser_jira(email):
+    
+    print("Yet to be written !!")
+    
+#function for adding user to  Jenkins    
+def addUser_jenkins(email):
+    
+    print("Yet to be written !!")
 
+#function for adding user to all platform
+def addUser_all(email):
+    
+    addUser_coralogix(email)
+    addUser_github(email)
+    addUser_aws(email)
+    addUser_appsignal(email)
+    addUser_redash(email)
+    addUser_jira(email)
+    addUser_jenkins(email)
+
+    
 #email adsress of user
 email = os.environ['email']
 
 #operation to be performed 
 operation = os.environ['operation']
 
-#plateform on which operation is to be performed 
-plateform = os.environ['plateform']
+#platform on which operation is to be performed 
+platform = os.environ['platform']
 
 
 
@@ -63,29 +103,42 @@ if email_is_valid(email):
 
     if operation=="create":
 
-        if plateform=="coralogix":
+        if platform=="coralogix":
 
             addUser_coralogix(email)
 
-        elif plateform=="github":
+        elif platform=="github":
 
             addUser_github(email)
 
-        else:
+        elif platform=="aws":
 
-            print("We don't have Script for this plateform Yet!")
-        
+            addUser_aws(email)
 
+        elif platform=="appsignal":
+
+            addUser_appsignal(email)
+
+        elif platform=="redash":
+
+            addUser_redash(email)
+
+        elif platform=="jira":
+
+            addUser_jira(email)
+
+        elif platform=="jenkins":
+
+            addUser_jenkins(email)
+            
+        elif platform=="All":
+            
+            addUser_all(email)
+            
+            
     elif operation=="delete":
 
         print("script for delete operations is yet to be written!")
-
-    
-    else:
-
-        print("Plese enter a vlid operation(create/delete)")
-
-
 
 else:
 

@@ -26,6 +26,7 @@ on:
         - jenkins
         - aws
         - appsignal
+        - All
         required: true
 
 permissions:

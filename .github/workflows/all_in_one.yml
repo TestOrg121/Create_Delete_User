@@ -6,11 +6,26 @@ on:
       email:
         description: 'Email address of user'
         required: true
+        
       operation:
-        description: 'operation to be performed'
+        type: choice
+        description: 'Choose Operation'
+        options:
+        - create
+        - delete
         required: true
-      plateform:
-        description: 'plateform'
+        
+      platform:
+        type: choice
+        description: 'Choose Platform'
+        options:
+        - coralogix
+        - github
+        - jira
+        - redash
+        - jenkins
+        - aws
+        - appsignal
         required: true
 
 permissions:
@@ -23,8 +38,9 @@ jobs:
     env:
           email: ${{github.event.inputs.email}}
           operation: ${{github.event.inputs.operation}}
-          plateform: ${{github.event.inputs.plateform}}
+          platform: ${{github.event.inputs.platform}}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          CORALOGIX_KEY: ${{ secrets.TEAM_API_KEY_CORALOGIX }}
 
     steps:
     - uses: actions/checkout@v3

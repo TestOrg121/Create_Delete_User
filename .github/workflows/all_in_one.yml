@@ -1,10 +1,10 @@
-name: Python script to invite users on different plateforms
+name: Add or Delete User
 
 on:
   workflow_dispatch:
     inputs:
       email:
-        description: 'Email address of user'
+        description: 'Email address of User'
         required: true
         
       operation:
@@ -19,6 +19,7 @@ on:
         type: choice
         description: 'Choose Platform'
         options:
+        - All
         - coralogix
         - github
         - jira
@@ -26,7 +27,6 @@ on:
         - jenkins
         - aws
         - appsignal
-        - All
         required: true
 
 permissions:

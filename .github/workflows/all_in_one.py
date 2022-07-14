@@ -25,7 +25,7 @@ def addUser_coralogix(email):
 #function for adding user to github
 def addUser_github(email):
 
-    ACCESS_TOKEN="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";
+    ACCESS_TOKEN= os.environ['ACCESS_TOKEN']
 
     org_name="TestOrg121"
 

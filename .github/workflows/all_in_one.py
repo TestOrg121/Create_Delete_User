@@ -49,13 +49,13 @@ def addUser_github(email):
     
 
 #email adsress of user
-email = ${{github.event.inputs.email}}
+email = os.environ['email']
 
 #operation to be performed 
-operation = ${{github.event.inputs.operation}}
+operation = os.environ['operation']
 
 #plateform on which operation is to be performed 
-plateform = ${{github.event.inputs.plateform}}
+plateform = os.environ['plateform']
 
 
 

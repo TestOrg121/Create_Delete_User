@@ -10,7 +10,7 @@ on:
         description: 'operation to be performed'
         required: true
       plateform:
-        description: 'operation to be performed'
+        description: 'plateform'
         required: true
 
 permissions:

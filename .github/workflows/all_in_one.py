@@ -54,27 +54,27 @@ def addUser_github(email):
 #function for adding user to AWS   
 def addUser_aws(email):
     
-    print("Yet to be written !!")
+    print("Script for AWS is yet to be written !!")
     
 #function for adding user to Appsignal  
 def addUser_appsignal(email):
     
-    print("Yet to be written !!")
+    print("Script for Appsignal is yet to be written !!")
     
 #function for adding user to Redash     
 def addUser_redash(email):
     
-    print("Yet to be written !!")
+    print("Script for Readsh is yet to be written !!")
     
 #function for adding user to JIRA     
 def addUser_jira(email):
     
-    print("Yet to be written !!")
+    print("Script for JIRA is yet to be written !!")
     
 #function for adding user to  Jenkins    
 def addUser_jenkins(email):
     
-    print("Yet to be written !!")
+    print("Script for Jenkins is yet to be written !!")
 
 #function for adding user to all platform
 def addUser_all(email):

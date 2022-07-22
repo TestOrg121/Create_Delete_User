@@ -42,6 +42,9 @@ jobs:
           platform: ${{github.event.inputs.platform}}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN_GITHUB }}
           CORALOGIX_KEY: ${{ secrets.TEAM_API_KEY_CORALOGIX }}
+          EMAIL_ADMIN_JIRA: ${{ secrets.EMAIL_ADMIN_JIRA }}
+          DOMAIN_NAME_JIRA: ${{ secrets.DOMAIN_NAME_JIRA}}
+          API_KEY_JIRA: ${{ secrets.API_KEY_JIRA}}
 
     steps:
     - uses: actions/checkout@v3

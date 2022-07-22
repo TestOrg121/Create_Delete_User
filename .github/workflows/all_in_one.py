@@ -69,11 +69,12 @@ def addUser_redash(email):
 #function for adding user to JIRA     
 def addUser_jira(email):
     
-    domain_name="testuseraryan"
+    API_TOKEN= os.environ['API_KEY_JIRA']
+    my_email= os.environ['EMAIL_ADMIN_JIRA']
+    domain_name= os.environ['DOMAIN_NAME_JIRA']
+    
     url = f"https://{domain_name}.atlassian.net/rest/api/2/user"
 
-    API_TOKEN='q9mjwDaowo5dWh9rllMG2421'
-    my_email="aryankarnin@gmail.com"
 
     auth =(my_email,API_TOKEN)
 
@@ -113,9 +114,9 @@ def addUser_all(email):
     
 def deleteUser_jira(email):
     
-    domain_name="testuseraryan"
-    API_TOKEN='q9mjwDaowo5dWh9rllMG2421'
-    my_email="aryankarnin@gmail.com"
+    domain_name= os.environ['DOMAIN_NAME_JIRA']
+    API_TOKEN= os.environ['API_KEY_JIRA']
+    my_email= os.environ['EMAIL_ADMIN_JIRA']
 
     auth =(my_email,API_TOKEN)
 

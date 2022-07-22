@@ -69,7 +69,31 @@ def addUser_redash(email):
 #function for adding user to JIRA     
 def addUser_jira(email):
     
-    print("Script for JIRA is yet to be written !!")
+    domain_name="testuseraryan"
+    url = f"https://{domain_name}.atlassian.net/rest/api/2/user"
+
+    API_TOKEN='q9mjwDaowo5dWh9rllMG2421'
+    my_email="aryankarnin@gmail.com"
+
+    auth =(my_email,API_TOKEN)
+
+    headers = {
+       "Accept": "application/json",
+       "Content-Type": "application/json"
+    }
+
+    body = json.dumps( {
+      "emailAddress": email
+    } )
+
+    response = requests.post(
+       url=url,
+       data=body,
+       headers=headers,
+       auth=auth
+    )
+
+    print(json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": ")))
     
 #function for adding user to  Jenkins    
 def addUser_jenkins(email):
@@ -86,6 +110,41 @@ def addUser_all(email):
     addUser_redash(email)
     addUser_jira(email)
     addUser_jenkins(email)
+    
+def deleteUser_jira(email):
+    
+    domain_name="testuseraryan"
+    API_TOKEN='q9mjwDaowo5dWh9rllMG2421'
+    my_email="aryankarnin@gmail.com"
+
+    auth =(my_email,API_TOKEN)
+
+    headers = {
+       "Accept": "application/json",
+       "Content-Type": "application/json"
+    }
+    
+    search_url = f"https://{domain_name}.atlassian.net/rest/api/2/user/search?query={email}"
+
+    response = requests.get(
+       url=search_url,
+       headers=headers,
+       auth=auth
+    )
+
+    accountId=response.json()[0]["accountId"]
+
+    delete_url= f"https://{domain_name}.atlassian.net/rest/api/3/user/"
+    
+    params={
+        "accountId":accountId
+    }
+
+    delete_url= f"https://testuseraryan.atlassian.net/rest/api/3/user/"
+
+    r=requests.delete(url=delete_url,params=params,auth=auth)
+
+    print(r.status_code)
 
     
 #email adsress of user
@@ -137,8 +196,11 @@ if email_is_valid(email):
             
             
     elif operation=="delete":
-
-        print("script for delete operations is yet to be written!")
+        
+        if platform=="jira":
+            deleteUser_jira(email)
+        else:
+            print("script for delete operations is yet to be written!")
 
 else:
 

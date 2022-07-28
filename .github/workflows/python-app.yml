@@ -1,0 +1,31 @@
+
+name: send mail
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+        SENDGRID_API_KEY : "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"
+    steps:
+    
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install sendgrid
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+    - name: running code
+      run: |
+        python send_mail.py

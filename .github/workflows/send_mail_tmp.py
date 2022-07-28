@@ -1,26 +1,28 @@
-import sendgrid
-import os
-from sendgrid.helpers.mail import Mail, Email, To, Content
+import boto3 
+import pandas
 
-SENDER_EMAIL="bibhuti.singh@byjus.com"
-email="rahul.a9@byjus.com"
-sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
-from_email = Email(SENDER_EMAIL)  # Change to your verified sender
-to_email = To(email)  # Change to your recipient
-subject = "Sending with SendGrid is Fun"
+# Creating the low level functional client
+client = boto3.client(
+    's3',
+    aws_access_key_id = 'ASIAQ2WETJKF6GU3F4FE',
+    aws_secret_access_key = 'foHLt3PZIdUpcSO9g97np9W8/zXZO6OLBhagml+4',
+    region_name = 'ap-southeast-1'
+)
+    
 
-message=f"""
-hello friend!
-this is your email
-{email}
-"""
-content = Content("text/plain",message)
-mail = Mail(from_email, to_email, subject, content)
+# Create the S3 object
+obj = client.get_object(
+    Bucket = 'email-username-mapping',
+    Key = 'email-username-mapping.csv'
+)
+    
+# Read data from the S3 object
+data = pandas.read_csv(obj['Body'])
+  
+print('Printing the data frame...')
+print(data.values)
 
-# Get a JSON-ready representation of the Mail object
-mail_json = mail.get()
-
-# Send an HTTP POST request to /mail/send
-response = sg.client.mail.send.post(request_body=mail_json)
-print(response.status_code)
-print(response.headers)
+email=input("EMAIL ID:").strip()
+#for getting user
+df2=df.query(f"email=='{email}'")['username']
+print(df2.iat[0])

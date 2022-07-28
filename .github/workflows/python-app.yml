@@ -28,4 +28,4 @@ jobs:
         
     - name: running code
       run: |
-        python send_mail.py
+        python .github/workflows/send_mail_tmp.py

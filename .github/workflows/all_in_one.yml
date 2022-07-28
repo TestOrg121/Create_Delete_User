@@ -45,6 +45,10 @@ jobs:
           EMAIL_ADMIN_JIRA: ${{ secrets.EMAIL_ADMIN_JIRA }}
           DOMAIN_NAME_JIRA: ${{ secrets.DOMAIN_NAME_JIRA}}
           API_KEY_JIRA: ${{ secrets.API_KEY_JIRA}}
+          DOMAIN_NAME_REDASH: ${{ secrets.DOMAIN_NAME_REDASH}}
+          API_KEY_REDASH: ${{ secrets.API_KEY_REDASH}}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY}}
+          SENDGRID_SENDER_EMAIL: ${{ secrets.SENDGRID_SENDER_EMAIL}}
 
     steps:
     - uses: actions/checkout@v3

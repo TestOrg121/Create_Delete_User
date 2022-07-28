@@ -85,18 +85,18 @@ def addUser_redash(email):
     invite_link=r.json()["invite_link"]
 
     # -- code for sending invitation link to user's email-id --
+    
+    sender_email=os.environ['SENDGRID_SENDER_EMAIL']
     sg = sendgrid.SendGridAPIClient(api_key=os.environ['SENDGRID_API_KEY'])
-    from_email = Email(os.environ['SENDGRID_SENDER_EMAIL'])  # Change to your verified sender
+    from_email = Email(sender_email)  # Change to your verified sender
     to_email = To(email)  # Change to your recipient
     subject = "Invitivation link for Redash"
-    content = Content(
-        "text/plain",
-        f""" 
-        Welcome to Redash!
-        please click on the link below to setup your password and create your account
-        {invite_link}
-        """
-    )
+    message=f""" 
+    Welcome to Redash!
+    please click on the link below to setup your password and create your account
+    {invite_link}
+    """
+    content = Content("text/plain",message)
     
     mail = Mail(from_email, to_email, subject, content)
 

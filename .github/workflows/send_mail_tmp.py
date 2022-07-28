@@ -22,7 +22,7 @@ data = pandas.read_csv(obj['Body'])
 print('Printing the data frame...')
 print(data.values)
 
-email=input("EMAIL ID:").strip()
+email="rahul.a9@byjus.com"
 #for getting user
-df2=df.query(f"email=='{email}'")['username']
+df2=data.query(f"email=='{email}'")['username']
 print(df2.iat[0])

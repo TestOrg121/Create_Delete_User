@@ -35,7 +35,7 @@ def addUser_github(email):
 
     ACCESS_TOKEN= os.environ['ACCESS_TOKEN']
 
-    org_name="TestOrg121"
+    org_name=os.environ['ORG_NAME_GITHUB']
 
     headers={
         "Accept":"application/vnd.github+json",

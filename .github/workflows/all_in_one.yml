@@ -28,6 +28,19 @@ on:
         - aws
         - appsignal
         required: true
+      
+      github_org:
+        type: choice
+        description: 'choose github organization' 
+        options:
+        - None
+        - TestOrg121
+        - aakashbyjus
+        - AssessEd
+        - Byjus Biz Tech
+        - ByjusWeb
+        - Byjus
+        required: true
 
 permissions:
   contents: read
@@ -40,6 +53,7 @@ jobs:
           email: ${{github.event.inputs.email}}
           operation: ${{github.event.inputs.operation}}
           platform: ${{github.event.inputs.platform}}
+          ORG_NAME_GITHUB: ${{github.event.inputs.github_org}}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN_GITHUB }}
           CORALOGIX_KEY: ${{ secrets.TEAM_API_KEY_CORALOGIX }}
           EMAIL_ADMIN_JIRA: ${{ secrets.EMAIL_ADMIN_JIRA }}
